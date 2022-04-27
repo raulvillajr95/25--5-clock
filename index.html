@@ -18,17 +18,17 @@
             <div id="b-length">
               <h3 id="break-label">Break Length</h3>
               <div id="b-length-adj">
-                <a id="break-decrement" href="" onclick="decrementBrk()"><i class="fa-solid fa-arrow-down"></i></a>
+                <a id="break-decrement" onclick="decrement(breakId)"><i class="fa-solid fa-arrow-down"></i></a>
                 <h3 id="break-length">5</h3>
-                <a id="break-increment" href=""><i class="fa-solid fa-arrow-up"></i></a>
+                <a id="break-increment" onclick="increment(breakId)"><i class="fa-solid fa-arrow-up"></i></a>
               </div>
             </div>
             <div id="s-length">
               <h3 id="session-label">Session Length</h3>
               <div id="s-length-adj">
-                <a id="session-decrement" href=""><i class="fa-solid fa-arrow-down"></i></a>
+                <a id="session-decrement" onclick="decrement(sessionId)"><i class="fa-solid fa-arrow-down"></i></a>
                 <h3 id="session-length">25</h3>
-                <a id="session-increment" href=""><i class="fa-solid fa-arrow-up"></i></a>
+                <a id="session-increment"  onclick="increment(sessionId)"><i class="fa-solid fa-arrow-up"></i></a>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
                 <i class="fa-solid fa-pause"></i>
               </div>
             </a>
-            <a id="reset" href=""><i class="fa-solid fa-arrows-rotate"></i></a>
+            <a id="reset" onclick="resetSesh()"><i class="fa-solid fa-arrows-rotate"></i></a>
           </div>
         </div>
       </div>

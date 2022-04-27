@@ -1,30 +1,21 @@
-let breakLen = 5
-let sessionLen = 25
+let brek = 5
+let sess = 25
 
 let breakId = document.getElementById('break-length')
-let breakLenNum = breakId.innerText
-function decrementBrk() {
-  breakLen -= 1
-  breakLenNum = breakLen
-  console.log(breakLen)
-}
-function incrementBrk() {
-  element.innerText = parseInt(element.innerText) - 1
-  return element.innerText
-}
-
 let sessionId = document.getElementById('session-length')
-let sessionLenNum = sessionId.innerText
-function decrementSess() {
-  element.innerText = parseInt(element.innerText) + 1
-  return element.innerText
+
+function decrement(element) {
+  if (parseInt(element.innerText)) {
+    element.textContent = parseInt(element.innerText) - 1
+  }
 }
-function incrementSess() {
-  element.innerText = parseInt(element.innerText) - 1
-  return element.innerText
+function increment(element) {
+  if (parseInt(element.innerText)) {
+    element.textContent = parseInt(element.innerText) + 1
+  }
 }
 
-function reset() {
-  breakLenNum = '5'
-  sessionLenNum = '25'
+function resetSesh() {
+  breakId.textContent = 5
+  sessionId.textContent = 25
 }
