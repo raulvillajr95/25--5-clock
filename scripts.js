@@ -22,7 +22,24 @@ function increment(element) {
   }
 }
 
+let timeCon = timeLe.textContent
+let secs = timeCon.slice(timeCon.indexOf(':') + 1)
+let mins = timeCon.slice(0, timeCon.indexOf(':'))
 
+let ex = 0
+function idk() {
+  if (ex == 0) {
+    console
+    ex = 59
+    timeLe.textContent = `${secs}:${ex}`
+  } else if (ex < 10) {
+    timeLe.textContent = `${secs}:0${ex}`
+  } else {
+    ex -= 1
+    timeLe.textContent = `${secs}:${ex}`
+  }
+}
+setInterval(idk, 1000)
 
 function resetSesh() {
   breakId.textContent = 5
