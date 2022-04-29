@@ -50,6 +50,10 @@ within break,
 if break == '00:00'
   sound alarm
   run specified session
+
+Ideas:
+-fix negative numbers
+  within session timer they're allowed to go to 00:00
 */
 
 function session() {
@@ -79,10 +83,26 @@ function brekLen() {
   }
 }
 
+// if (secs == 0 && sess == 0) {
+//   setInterval(brekLen, 1000)
+// }
+
+let sessTimerRunning = false
+let do_this;
 function start() {
-  
+  if (sessTimerRunning == false) {
+    sessTimerRunning = true
+    do_this = setInterval(session, 1000) 
+  } else if (sessTimerRunning == true) {
+    sessTimerRunning = false
+    do_this = clearInterval(do_this)
+  }
 }
-//setInterval(session, 1000)
+
+/* 
+for start and stop,
+  I could some how use the 'sessTimerRunning' to see if it's on or not
+*/
 
 function resetSesh() {
   breakId.textContent = 5
