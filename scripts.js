@@ -4,6 +4,7 @@ let sess = 25
 let breakId = document.getElementById('break-length')
 let sessionId = document.getElementById('session-length')
 let timeLe = document.getElementById('time-left')
+let timerLabel = document.getElementById('timer-label')
 
 breakId.innerText = brek
 sessionId.innerText = sess
@@ -61,6 +62,7 @@ Ideas:
   within session timer they're allowed to go to 00:00
 -instead of at 0:00, i can trigger it when it goes under 0:00
 -have it reach 0:00
+-i can use the '' to not let it change time while timer is running
 */
 
 let secs = 0
@@ -71,23 +73,39 @@ function session() {
     sess -= 1
     secs = 59
     timeLe.textContent = `${sess}:${secs}`
+  } else if (secs > 0 && secs >= 11 && sess == 0) {
+    secs -= 1
+    timeLe.textContent = `0${sess}:${secs}`
+  } else if (secs < 11 && secs > 0 && sess == 0) {
+    secs -= 1
+    timeLe.textContent = `0${sess}:0${secs}`
   } else if (secs < 11 && secs > 0) {
-    sess -= 1
     secs -= 1
     timeLe.textContent = `${sess}:0${secs}`
   } else {
     secs -= 1
     timeLe.textContent = `${sess}:${secs}`
   }
+
   console.log(sess, secs)
+  if (sess == 0 && secs == 0) {
+    timerLabel.textContent = 'Break'
+    secs = 0
+    brekLen()
+  }
 }
 function brekLen() {
   if (secs == 0) {
     brek -= 1
     secs = 59
     timeLe.textContent = `${brek}:${secs}`
-  } else if (secs < 11) {
-    brek -= 1
+  } else if (secs > 0 && secs >= 11 && brek == 0) {
+    secs -= 1
+    timeLe.textContent = `${brek}:${secs}`
+  } else if (secs < 11 && secs > 0 && brek == 0) {
+    secs -= 1
+    timeLe.textContent = `0${brek}:0${secs}`
+  } else if (secs < 11 && secs > 0) {
     secs -= 1
     timeLe.textContent = `${brek}:0${secs}`
   } else {

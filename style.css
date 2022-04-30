@@ -63,6 +63,10 @@
   border: 1px solid #000;
   padding: 15px 30px;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #bottom-icons {
