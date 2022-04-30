@@ -99,11 +99,10 @@ function session() {
     timeLe.textContent = "00:00"
     secs = 0
     brek = parseInt(breakId.innerText)
-    do_this = clearInterval(do_this)
-    //
     sessTimerRunning = false
     brekTimerRunning = true
-    setInterval(brek, 1000)
+    do_this = clearInterval(do_this)
+    setInterval(brekLen, 1000)
   }
 }
 function brekLen() {
@@ -130,13 +129,14 @@ function brekLen() {
     timeLe.textContent = "00:00"
     secs = 0
     sess = parseInt(sessionId.innerText)
-    do_that = clearInterval(do_that)
     sessTimerRunning = true
     brekTimerRunning = false
+    do_that = clearInterval(do_that)
     setInterval(session, 1000)
   }
 }
 
+// Running Time Switches
 let sessTimerRunning = false
 let do_this;
 
@@ -153,16 +153,6 @@ function start() {
     do_this = clearInterval(do_this)
   }
 }
-
-// let brekTimerRunning = false
-// if (secs == 0 && sess == 0) {
-//   console.log('reached 0')
-//   secs = 0
-//   sessTimerRunning = false
-//   do_this = clearInterval(do_this)
-//   brekTimerRunning = true
-//   setInterval(brekLen, 1000)
-// }
 
 /* 
 for start and stop,
