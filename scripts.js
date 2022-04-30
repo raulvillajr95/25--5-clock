@@ -63,6 +63,11 @@ Ideas:
 -instead of at 0:00, i can trigger it when it goes under 0:00
 -have it reach 0:00
 -i can use the '' to not let it change time while timer is running
+-i might have to add a 'do_that' similar to 'do_this' for breaks to stop when session runs again
+  it'll have the running timer and everything except the whole function
+-actually add the whole function
+  start() starts session only,
+    it can pause both though
 */
 
 let secs = 0
@@ -90,8 +95,11 @@ function session() {
   console.log(sess, secs)
   if (sess == 0 && secs == 0) {
     timerLabel.textContent = 'Break'
+    timeLe.textContent = "00:00"
     secs = 0
-    brekLen()
+    do_this = clearInterval(do_this)
+    brekTimerRunning = true
+    setInterval(brekLen, 1000)
   }
 }
 function brekLen() {
@@ -112,10 +120,13 @@ function brekLen() {
     secs -= 1
     timeLe.textContent = `${brek}:${secs}`
   }
+  console.log(brek, secs)
+  // Go back to running session
 }
 
 let sessTimerRunning = false
 let do_this;
+let brekTimerRunning = false
 function start() {
   if (sessTimerRunning == false) {
     sessTimerRunning = true
