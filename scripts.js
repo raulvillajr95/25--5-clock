@@ -68,6 +68,7 @@ Ideas:
 -actually add the whole function
   start() starts session only,
     it can pause both though
+-i might have to mess with the switches more 'TimerRunning'
 */
 
 let secs = 0
@@ -93,13 +94,16 @@ function session() {
   }
 
   console.log(sess, secs)
-  if (sess == 0 && secs == 0) {
+  if (sess == 0 && secs == 0 && brekTimerRunning == false) {
     timerLabel.textContent = 'Break'
     timeLe.textContent = "00:00"
     secs = 0
+    brek = parseInt(breakId.innerText)
     do_this = clearInterval(do_this)
+    //
+    sessTimerRunning = false
     brekTimerRunning = true
-    setInterval(brekLen, 1000)
+    setInterval(brek, 1000)
   }
 }
 function brekLen() {
@@ -121,12 +125,25 @@ function brekLen() {
     timeLe.textContent = `${brek}:${secs}`
   }
   console.log(brek, secs)
-  // Go back to running session
+  if (brek == 0 && secs == 0 && sessTimerRunning == false) {
+    timerLabel.textContent = 'Session'
+    timeLe.textContent = "00:00"
+    secs = 0
+    sess = parseInt(sessionId.innerText)
+    do_that = clearInterval(do_that)
+    sessTimerRunning = true
+    brekTimerRunning = false
+    setInterval(session, 1000)
+  }
 }
 
 let sessTimerRunning = false
 let do_this;
+
 let brekTimerRunning = false
+let do_that;
+
+
 function start() {
   if (sessTimerRunning == false) {
     sessTimerRunning = true
