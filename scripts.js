@@ -8,7 +8,7 @@ let timeLe = document.getElementById('time-left')
 breakId.innerText = brek
 sessionId.innerText = sess
 
-// Break Length
+// Break Length +/-
 function decrementBr() {
   if (brek > 1) {
     brek -= 1
@@ -21,24 +21,29 @@ function incrementBr() {
     breakId.textContent = brek
   }
 }
-// Session Length
+// Session Length +/-
 function decrementSs() {
-  if (sess > 1) {
+  if (sess > 1 && sess < 11) {
+    sess -= 1
+    sessionId.textContent = sess
+    timeLe.textContent = `0${sess}:00`
+  } else if (sess > 1) {
     sess -= 1
     sessionId.textContent = sess
     timeLe.textContent = `${sess}:00`
   }
 }
 function incrementSs() {
-  if (sess !== 60) {
+  if (sess !== 60 && sess < 9) {
+    sess += 1
+    sessionId.textContent = sess
+    timeLe.textContent = `0${sess}:00`
+  } else if (sess !== 60) {
     sess += 1
     sessionId.textContent = sess
     timeLe.textContent = `${sess}:00`
   }
 }
-
-let secs = 0
-// Use 'sess' for minutes
 
 /*
 within session,
@@ -54,38 +59,42 @@ if break == '00:00'
 Ideas:
 -fix negative numbers
   within session timer they're allowed to go to 00:00
+-instead of at 0:00, i can trigger it when it goes under 0:00
+-have it reach 0:00
 */
+
+let secs = 0
+// Use 'sess' for minutes
 
 function session() {
   if (secs == 0) {
     sess -= 1
     secs = 59
     timeLe.textContent = `${sess}:${secs}`
-  } else if (secs < 11) {
+  } else if (secs < 11 && secs > 0) {
+    sess -= 1
     secs -= 1
     timeLe.textContent = `${sess}:0${secs}`
   } else {
     secs -= 1
     timeLe.textContent = `${sess}:${secs}`
   }
+  console.log(sess, secs)
 }
 function brekLen() {
   if (secs == 0) {
-    sess -= 1
+    brek -= 1
     secs = 59
-    timeLe.textContent = `${sess}:${secs}`
+    timeLe.textContent = `${brek}:${secs}`
   } else if (secs < 11) {
+    brek -= 1
     secs -= 1
-    timeLe.textContent = `${sess}:0${secs}`
+    timeLe.textContent = `${brek}:0${secs}`
   } else {
     secs -= 1
-    timeLe.textContent = `${sess}:${secs}`
+    timeLe.textContent = `${brek}:${secs}`
   }
 }
-
-// if (secs == 0 && sess == 0) {
-//   setInterval(brekLen, 1000)
-// }
 
 let sessTimerRunning = false
 let do_this;
@@ -98,6 +107,16 @@ function start() {
     do_this = clearInterval(do_this)
   }
 }
+
+// let brekTimerRunning = false
+// if (secs == 0 && sess == 0) {
+//   console.log('reached 0')
+//   secs = 0
+//   sessTimerRunning = false
+//   do_this = clearInterval(do_this)
+//   brekTimerRunning = true
+//   setInterval(brekLen, 1000)
+// }
 
 /* 
 for start and stop,
